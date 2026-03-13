@@ -1,0 +1,204 @@
+/* ============================================================
+   LOADER.CSS — Cinematic Intro Loader
+   ============================================================ */
+
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.8s cubic-bezier(0.87, 0, 0.13, 1),
+              visibility 0.8s;
+}
+
+#loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ─── BACKGROUND GRID ────────────────────────────────────── */
+.loader-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 102, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 102, 255, 0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridFade 2s ease forwards;
+}
+
+@keyframes gridFade {
+  0%   { opacity: 0; transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ─── CORNER DECORATIONS ─────────────────────────────────── */
+.loader-corner {
+  position: absolute;
+  width: 40px; height: 40px;
+}
+
+.loader-corner::before,
+.loader-corner::after {
+  content: '';
+  position: absolute;
+  background: #0066FF;
+}
+
+.loader-corner::before { width: 100%; height: 1px; top: 0; left: 0; }
+.loader-corner::after  { width: 1px; height: 100%; top: 0; left: 0; }
+
+.loader-corner.tl { top: 2rem; left: 2rem; }
+.loader-corner.tr { top: 2rem; right: 2rem; transform: scaleX(-1); }
+.loader-corner.bl { bottom: 2rem; left: 2rem; transform: scaleY(-1); }
+.loader-corner.br { bottom: 2rem; right: 2rem; transform: scale(-1); }
+
+/* ─── TERMINAL LABEL ─────────────────────────────────────── */
+.loader-terminal {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: #0066FF;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.2s forwards;
+}
+
+.loader-terminal .blink {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ─── MAIN NAME ──────────────────────────────────────────── */
+.loader-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 3rem;
+}
+
+.loader-name-line {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4.5rem, 13vw, 12rem);
+  line-height: 0.9;
+  letter-spacing: 0.05em;
+  color: #f5f5f0;
+  overflow: hidden;
+  display: block;
+}
+
+.loader-name-line .inner {
+  display: block;
+  transform: translateY(110%);
+  animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.loader-name-line:nth-child(1) .inner { animation-delay: 0.3s; }
+.loader-name-line:nth-child(2) .inner {
+  animation-delay: 0.45s;
+  color: #0066FF;
+}
+
+/* ─── PROGRESS BAR ───────────────────────────────────────── */
+.loader-progress-wrap {
+  width: min(400px, 80vw);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  opacity: 0;
+  animation: fadeUp 0.5s 0.8s forwards;
+}
+
+.loader-progress-bar {
+  width: 100%;
+  height: 1px;
+  background: #1f1f1f;
+  position: relative;
+  overflow: hidden;
+}
+
+.loader-progress-fill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 0;
+  background: #0066FF;
+  animation: progressFill 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+  box-shadow: 0 0 10px rgba(0, 102, 255, 0.8);
+}
+
+@keyframes progressFill {
+  0%   { width: 0%; }
+  100% { width: 100%; }
+}
+
+.loader-progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  color: #444;
+  letter-spacing: 0.1em;
+}
+
+.loader-percent {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  color: #0066FF;
+  counter-reset: percent;
+  animation: countUp 1.8s 0.6s forwards;
+}
+
+/* ─── STATUS TEXT ────────────────────────────────────────── */
+.loader-status {
+  position: absolute;
+  bottom: 3rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: #333;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeUp 0.5s 1s forwards;
+}
+
+/* ─── SLIDE UP TRANSITION ────────────────────────────────── */
+.loader-slide-up {
+  position: absolute;
+  inset: 0;
+  background: #0066FF;
+  transform: translateY(100%);
+  z-index: 1;
+}
+
+.loader-slide-up.animate {
+  animation: slideUpOut 0.9s cubic-bezier(0.87, 0, 0.13, 1) forwards;
+}
+
+@keyframes slideUpOut {
+  0%   { transform: translateY(100%); }
+  40%  { transform: translateY(0%); }
+  100% { transform: translateY(-100%); }
+}
+
+/* ─── KEYFRAMES ──────────────────────────────────────────── */
+@keyframes slideUp {
+  to { transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
