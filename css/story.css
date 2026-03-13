@@ -1,0 +1,306 @@
+/* ============================================================
+   STORY.CSS — Horizontal Pinned Scroll Panels (Lando-style)
+   ============================================================ */
+
+/* ─── SECTION WRAPPER ────────────────────────────────────── */
+#story {
+  position: relative;
+  background: #050505;
+  /* Height = panels × 100vh so GSAP has room to scroll */
+  height: 500vh;
+}
+
+/* ─── STICKY CONTAINER ───────────────────────────────────── */
+.story-track-wrap {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+}
+
+/* ─── HORIZONTAL TRACK ───────────────────────────────────── */
+.story-track {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  will-change: transform;
+  width: 400vw;
+  flex-shrink: 0;
+}
+
+/* ─── INDIVIDUAL PANEL ───────────────────────────────────── */
+.story-panel {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: 45% 55%;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0 clamp(2rem, 5vw, 6rem);
+  gap: 4rem;
+  background: #060810;
+}
+
+/* ─── PANEL PHOTO SIDE ───────────────────────────────────── */
+.story-panel-photo {
+  position: relative;
+  width: 100%;
+  height: 78vh;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-color: #111;
+  flex-shrink: 0;
+  transition: background-size 0.6s ease;
+}
+
+.story-panel-photo:hover {
+  background-size: 105%;
+}
+
+/* Photo overlay tint */
+.story-panel-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 245, 255, 0.06) 0%,
+    transparent 60%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Corner accent lines on photo */
+.story-panel-photo::before,
+.story-panel-photo::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.story-panel-photo::before {
+  top: 0; left: 0;
+  width: 36px; height: 36px;
+  border-top: 2px solid rgba(0, 245, 255, 0.5);
+  border-left: 2px solid rgba(0, 245, 255, 0.5);
+}
+
+.story-panel-photo::after {
+  bottom: 0; right: 0;
+  width: 36px; height: 36px;
+  border-bottom: 2px solid rgba(0, 245, 255, 0.5);
+  border-right: 2px solid rgba(0, 245, 255, 0.5);
+}
+
+/* ─── PANEL CONTENT SIDE ─────────────────────────────────── */
+.story-panel-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+.story-panel-content--right {
+  order: -1;
+}
+
+/* ─── PANEL NUMBER LABEL ─────────────────────────────────── */
+.story-panel .s-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: #00F5FF;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0;
+}
+
+.story-panel .s-label::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: #00F5FF;
+  flex-shrink: 0;
+}
+
+/* ─── STORY TITLE ────────────────────────────────────────── */
+.story-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 6vw, 6.5rem);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  color: #f5f5f0;
+}
+
+.story-accent {
+  color: #00F5FF;
+  text-shadow:
+    0 0 40px rgba(0, 245, 255, 0.4),
+    0 0 80px rgba(0, 245, 255, 0.15);
+}
+
+/* ─── BODY TEXT ──────────────────────────────────────────── */
+.story-body {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(0.88rem, 1.2vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.8;
+  max-width: 480px;
+}
+
+/* ─── PANEL 4 — QUOTE PANEL ──────────────────────────────── */
+.story-panel--quote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  grid-template-columns: 1fr;
+}
+
+/* Background giant number */
+.story-panel--quote::before {
+  content: '04';
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 35vw;
+  color: rgba(0, 245, 255, 0.03);
+  line-height: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.1em;
+}
+
+.story-quote-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  max-width: 900px;
+  z-index: 2;
+}
+
+.story-quote-content .s-label {
+  justify-content: center;
+}
+
+.story-quote-content .s-label::before { display: none; }
+
+.story-quote {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 7vw, 7.5rem);
+  line-height: 1;
+  letter-spacing: 0.03em;
+  color: #f5f5f0;
+  font-style: normal;
+  border: none;
+  padding: 0;
+}
+
+.story-quote-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ─── PANEL BACKGROUND COLORS ────────────────────────────── */
+.story-panel:nth-child(1) { background: #04080f; }
+.story-panel:nth-child(2) { background: #050505; }
+.story-panel:nth-child(3) { background: #04080f; }
+.story-panel:nth-child(4) { background: #020202; }
+
+/* ─── PROGRESS DOTS ──────────────────────────────────────── */
+.story-progress {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.story-progress.visible { opacity: 1; }
+
+.story-progress-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.story-progress-dot.active {
+  background: #00F5FF;
+  transform: scale(1.5);
+  box-shadow: 0 0 8px rgba(0, 245, 255, 0.6);
+}
+
+/* ─── SECTION TRANSITION: entry/exit ─────────────────────── */
+#story::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, #050505, transparent);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* ─── MOBILE FALLBACK ────────────────────────────────────── */
+@media (max-width: 900px) {
+  .story-track-wrap {
+    position: relative;
+    height: auto;
+  }
+
+  .story-track {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+
+  .story-panel {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    grid-template-columns: 1fr;
+    padding: 5rem 1.5rem;
+    gap: 2rem;
+  }
+
+  .story-panel-photo {
+    height: 50vh;
+  }
+
+  .story-panel-content--right {
+    order: 0;
+  }
+
+  .story-panel--quote {
+    padding: 5rem 1.5rem;
+  }
+
+  .story-quote {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+}

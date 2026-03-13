@@ -1,31 +1,25 @@
 /* ============================================================
-   GSAP-ANIMATIONS.JS — Hero Animations + ScrollTrigger
+   GSAP-ANIMATIONS.JS — Hero + Horizontal Story Scroll
    ============================================================ */
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-/* ─── HERO ENTRANCE (fires after loader) ─────────────────── */
+/* ─── HERO ENTRANCE (after loader exits) ─────────────────── */
 document.addEventListener('loaderDone', () => {
-  // Image zoom in
-  const heroImg = document.querySelector('.hero-bg-img');
-  if (heroImg) {
-    heroImg.classList.add('loaded');
-  }
+  // Photo zoom
 
   // Label
   const label = document.querySelector('.hero-label');
   if (label) label.classList.add('in');
 
-  // Name lines
-  document.querySelectorAll('.hero-name-line .word').forEach(w => {
-    w.classList.add('in');
-  });
+  // Name words
+  document.querySelectorAll('.hero-name-line .word').forEach(w => w.classList.add('in'));
 
-  // Tagline typewriter
+  // Tagline + typewriter
   setTimeout(() => {
-    const tagline = document.querySelector('.hero-tagline');
-    if (tagline) tagline.classList.add('in');
-    _typewriter('typewriter', 'I build systems that think.', 55);
+    const tag = document.querySelector('.hero-tagline');
+    if (tag) tag.classList.add('in');
+    typewriter('typewriter', 'I build systems that think.', 55);
   }, 750);
 
   // Buttons
@@ -36,57 +30,79 @@ document.addEventListener('loaderDone', () => {
 });
 
 /* ─── TYPEWRITER ─────────────────────────────────────────── */
-function _typewriter(elId, text, speed) {
-  const el = document.getElementById(elId);
+function typewriter(id, text, speed) {
+  const el = document.getElementById(id);
   if (!el) return;
   let i = 0;
   el.textContent = '';
   const tick = () => {
     if (i < text.length) {
       el.textContent += text[i++];
-      setTimeout(tick, speed + Math.random() * 30);
+      setTimeout(tick, speed + Math.random() * 25);
     }
   };
   tick();
 }
 
-/* ─── HERO PARALLAX ON SCROLL ────────────────────────────── */
+/* ─── INIT ON DOM READY ──────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
-  // Hero bg parallax
-  gsap.to('.hero-bg-img', {
-    yPercent: 25,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '#hero',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: true,
-    }
-  });
 
-  // Hero content slides up on scroll
+  /* ── Hero content fade on scroll ── */
   gsap.to('.hero-content', {
-    yPercent: -15,
-    opacity: 0.3,
+    yPercent: -12,
+    opacity: 0.2,
     ease: 'none',
     scrollTrigger: {
       trigger: '#hero',
-      start: 'center top',
+      start: '50% top',
       end: 'bottom top',
       scrub: true,
     }
   });
 
-  // 3D canvas fades out
-  gsap.to('#three-canvas', {
-    opacity: 0,
-    y: -60,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '#hero',
-      start: '60% top',
-      end: 'bottom top',
-      scrub: true,
-    }
-  });
+  /* ── Horizontal Story Scroll ── */
+  const track = document.querySelector('.story-track');
+
+  if (track) {
+    const panels    = gsap.utils.toArray('.story-panel');
+    const numPanels = panels.length;
+
+    // Pin the entire story section and move the track horizontally
+    gsap.to(track, {
+      x: () => -(track.scrollWidth - window.innerWidth),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#story',
+        pin: '.story-track-wrap',
+        scrub: 1.2,
+        start: 'top top',
+        end: () => '+=' + (track.scrollWidth - window.innerWidth),
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          const idx = Math.round(self.progress * (numPanels - 1));
+          document.querySelectorAll('.story-progress-dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === idx);
+          });
+        },
+        onEnter: () => document.querySelector('.story-progress')?.classList.add('visible'),
+        onLeave: () => document.querySelector('.story-progress')?.classList.remove('visible'),
+        onEnterBack: () => document.querySelector('.story-progress')?.classList.add('visible'),
+        onLeaveBack: () => document.querySelector('.story-progress')?.classList.remove('visible'),
+      }
+    });
+  }
+
+  /* ── Add progress dots dynamically ── */
+  const panels = document.querySelectorAll('.story-panel');
+  if (panels.length > 0) {
+    const prog = document.createElement('div');
+    prog.className = 'story-progress';
+    panels.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'story-progress-dot' + (i === 0 ? ' active' : '');
+      prog.appendChild(dot);
+    });
+    document.body.appendChild(prog);
+  }
+
 });
