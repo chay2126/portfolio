@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chaitanya Pentakota — I build systems that think.</title>
+  <meta name="description" content="Python Developer & AI Engineer — building intelligent systems, AI agents, and backend solutions.">
+  <meta name="author" content="Chaitanya Pentakota">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/loader.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/story.css">
+  <link rel="stylesheet" href="css/skills.css">
+  <link rel="stylesheet" href="css/projects.css">
+  <link rel="stylesheet" href="css/experience.css">
+  <link rel="stylesheet" href="css/contact.css">
+  <link rel="stylesheet" href="css/feedback.css">
+
+  <!-- GSAP (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Splitting.js -->
+  <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css">
+  <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+</head>
+<body>
+
+  <!-- ── NOISE OVERLAY ─────────────────────────────────── -->
+  <div id="noise"></div>
+
+  <!-- ── CUSTOM CURSOR ─────────────────────────────────── -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- ── LOADER ────────────────────────────────────────── -->
+  <div id="loader">
+    <div class="loader-grid"></div>
+
+    <!-- Corner brackets -->
+    <div class="loader-corner tl"></div>
+    <div class="loader-corner tr"></div>
+    <div class="loader-corner bl"></div>
+    <div class="loader-corner br"></div>
+
+    <!-- Terminal label -->
+    <div class="loader-terminal">
+      &gt; portfolio.init()<span class="blink">_</span>
+    </div>
+
+    <!-- Name -->
+    <div class="loader-name">
+      <span class="loader-name-line">
+        <span class="inner">CHAITANYA</span>
+      </span>
+      <span class="loader-name-line">
+        <span class="inner">PENTAKOTA</span>
+      </span>
+    </div>
+
+    <!-- Progress -->
+    <div class="loader-progress-wrap">
+      <div class="loader-progress-bar">
+        <div class="loader-progress-fill"></div>
+      </div>
+      <div class="loader-progress-labels">
+        <span>Python Developer · AI Engineer</span>
+        <span class="loader-percent">0%</span>
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div class="loader-status">Initializing systems...</div>
+
+    <!-- Slide up exit -->
+    <div class="loader-slide-up"></div>
+  </div>
+
+  <!-- ── NAVIGATION ─────────────────────────────────────── -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">CP<span>.</span>DEV</a>
+    <ul class="nav-links">
+      <li><a href="#story"      data-section="story">About</a></li>
+      <li><a href="#skills"     data-section="skills">Skills</a></li>
+      <li><a href="#projects"   data-section="projects">Projects</a></li>
+      <li><a href="#experience" data-section="experience">Experience</a></li>
+      <li><a href="#contact"    data-section="contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 1: HERO
+       ═══════════════════════════════════════════════════════ -->
+  <section id="hero" class="section-hero">
+    <!-- Full bleed background photo -->
+    <div class="hero-bg">
+      <img src="assets/photos/hero-bg.jpg" alt="Chaitanya Pentakota" class="hero-bg-img">
+      <div class="hero-bg-overlay"></div>
+    </div>
+
+    <!-- Floating tech icons canvas -->
+    <canvas id="floating-icons-canvas"></canvas>
+
+    <!-- 3D Character canvas -->
+    <canvas id="three-canvas"></canvas>
+
+    <!-- Hero content -->
+    <div class="hero-content">
+      <div class="hero-label reveal">
+        <span class="hero-label-line"></span>
+        Python Developer &amp; AI Engineer
+        <span class="hero-label-line"></span>
+      </div>
+
+      <h1 class="hero-name" data-splitting>
+        <span class="hero-name-line">CHAITANYA</span>
+        <span class="hero-name-line accent-line">PENTAKOTA</span>
+      </h1>
+
+      <div class="hero-tagline">
+        <span class="hero-tagline-text" id="typewriter"></span>
+        <span class="typewriter-cursor">|</span>
+      </div>
+
+      <!-- 3 Buttons -->
+      <div class="hero-ctas reveal">
+        <a href="assets/Chaitanya_Pentakota_Resume.pdf" download class="btn btn-primary">
+          <span class="btn-icon">↓</span> Download Resume
+        </a>
+        <a href="https://github.com/chay2126" target="_blank" class="btn btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://linkedin.com/in/chaitanya-pentakota-189217192" target="_blank" class="btn btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero bottom bar -->
+    <div class="hero-bottom">
+      <div class="hero-status">
+        <span class="status-dot"></span>
+        Available for opportunities
+      </div>
+      <div class="hero-location">
+        Visakhapatnam, India — 2025
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 2: STORY SCROLL (Horizontal Pinned)
+       ═══════════════════════════════════════════════════════ -->
+  <section id="story" class="section-story">
+    <div class="story-track-wrap">
+      <div class="story-track">
+
+        <!-- Panel 1: Who I Am -->
+        <div class="story-panel" data-color="#00F5FF">
+          <div class="story-panel-photo">
+            <img src="assets/photos/story-1.jpg" alt="Chaitanya — nature">
+            <div class="story-panel-photo-overlay"></div>
+          </div>
+          <div class="story-panel-content">
+            <div class="s-label">01 — Who I Am</div>
+            <h2 class="story-title">Built for<br>the <span class="story-accent">outdoors</span><br>&amp; the terminal.</h2>
+            <p class="story-body">I'm Chaitanya Pentakota — a Python developer and AI engineer who believes great software is as much about clarity of thought as it is about clean code. When I'm not building intelligent systems, you'll find me somewhere with good light and open sky.</p>
+          </div>
+        </div>
+
+        <!-- Panel 2: What I Do -->
+        <div class="story-panel" data-color="#00F5FF">
+          <div class="story-panel-content story-panel-content--right">
+            <div class="s-label">02 — What I Do</div>
+            <h2 class="story-title">Python.<br><span class="story-accent">AI.</span><br>Backend.</h2>
+            <p class="story-body">I specialise in building backend systems, AI-powered applications, and automation tools — from gesture-controlled interfaces using computer vision, to intelligent agents that analyse global stock markets in real time.</p>
+          </div>
+          <div class="story-panel-photo">
+            <img src="assets/photos/story-2.jpg" alt="Chaitanya — professional">
+            <div class="story-panel-photo-overlay"></div>
+          </div>
+        </div>
+
+        <!-- Panel 3: My Journey -->
+        <div class="story-panel" data-color="#00F5FF">
+          <div class="story-panel-photo">
+            <img src="assets/photos/story-3.jpg" alt="Chaitanya — candid">
+            <div class="story-panel-photo-overlay"></div>
+          </div>
+          <div class="story-panel-content">
+            <div class="s-label">03 — My Journey</div>
+            <h2 class="story-title">From IT<br>student to<br><span class="story-accent">AI builder.</span></h2>
+            <p class="story-body">B.Tech in Information Technology, one year at Prowess Enterprise shipping real backend systems, and a relentless drive to keep building things that solve actual problems — that's the journey so far. The next chapter is still being written.</p>
+          </div>
+        </div>
+
+        <!-- Panel 4: What Drives Me -->
+        <div class="story-panel story-panel--quote" data-color="#00F5FF">
+          <div class="story-quote-content">
+            <div class="s-label">04 — Philosophy</div>
+            <blockquote class="story-quote">
+              "The best software doesn't just run —<br>
+              <span class="story-accent">it thinks.</span>"
+            </blockquote>
+            <p class="story-quote-sub">— Chaitanya Pentakota</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 3: SKILLS
+       ═══════════════════════════════════════════════════════ -->
+  <section id="skills" class="section-wrap section-skills">
+    <div class="skills-header reveal">
+      <div class="s-label">Core Technologies</div>
+      <h2 class="s-title">What I<br><span class="accent">Work With</span></h2>
+    </div>
+    <div id="skills-orbit-canvas"></div>
+    <div class="skills-grid">
+      <div class="skill-group reveal" data-delay="0">
+        <div class="skill-group-label">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">C</span>
+        </div>
+      </div>
+      <div class="skill-group reveal" data-delay="80">
+        <div class="skill-group-label">Backend &amp; APIs</div>
+        <div class="skill-tags">
+          <span class="skill-tag">FastAPI</span>
+          <span class="skill-tag">Flask</span>
+          <span class="skill-tag">REST APIs</span>
+        </div>
+      </div>
+      <div class="skill-group reveal" data-delay="160">
+        <div class="skill-group-label">AI &amp; NLP</div>
+        <div class="skill-tags">
+          <span class="skill-tag">LLM Integration</span>
+          <span class="skill-tag">PHI-3 Mini</span>
+          <span class="skill-tag">NLP</span>
+          <span class="skill-tag">MediaPipe</span>
+          <span class="skill-tag">OpenCV</span>
+        </div>
+      </div>
+      <div class="skill-group reveal" data-delay="240">
+        <div class="skill-group-label">Databases</div>
+        <div class="skill-tags">
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">SQLite</span>
+        </div>
+      </div>
+      <div class="skill-group reveal" data-delay="320">
+        <div class="skill-group-label">Data &amp; Viz</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Tableau</span>
+          <span class="skill-tag">Excel</span>
+        </div>
+      </div>
+      <div class="skill-group reveal" data-delay="400">
+        <div class="skill-group-label">Design &amp; Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">UI/UX Design</span>
+          <span class="skill-tag">Git</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 4: PROJECTS
+       ═══════════════════════════════════════════════════════ -->
+  <section id="projects" class="section-wrap section-projects">
+    <div class="projects-header reveal">
+      <div class="s-label">Selected Work</div>
+      <h2 class="s-title">Projects</h2>
+    </div>
+    <div class="projects-list">
+
+      <div class="project-row reveal">
+        <div class="project-num">01</div>
+        <div class="project-info">
+          <h3 class="project-title">Virtual Mouse</h3>
+          <p class="project-desc">A gesture-controlled virtual mouse enabling touchless cursor control via hand gestures captured through a webcam. Real-time hand tracking with MediaPipe translates finger landmarks into cursor movement, clicking, and scrolling.</p>
+          <div class="project-stack">
+            <span>Python</span><span>MediaPipe</span><span>OpenCV</span>
+          </div>
+        </div>
+        <div class="project-action">
+          <a href="https://github.com/chay2126/virtual_mouse" target="_blank" class="project-link">
+            View on GitHub <span>↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-row reveal" data-delay="80">
+        <div class="project-num">02</div>
+        <div class="project-info">
+          <h3 class="project-title">File Summarizer</h3>
+          <p class="project-desc">Automated document summarization powered by PHI-3 Mini TLM. Processes large text files, analyzes context, and extracts key insights — turning walls of text into clear, concise summaries.</p>
+          <div class="project-stack">
+            <span>Python</span><span>PHI-3 Mini</span><span>NLP</span>
+          </div>
+        </div>
+        <div class="project-action">
+          <a href="https://github.com/chay2126/file-summarizer" target="_blank" class="project-link">
+            View on GitHub <span>↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-row reveal" data-delay="160">
+        <div class="project-num">03</div>
+        <div class="project-info">
+          <h3 class="project-title">Global Stock Agent</h3>
+          <p class="project-desc">An intelligent agent that retrieves global market data via APIs and generates summarized financial insights — helping users understand complex stock trends without drowning in raw numbers.</p>
+          <div class="project-stack">
+            <span>Python</span><span>APIs</span><span>Automation</span>
+          </div>
+        </div>
+        <div class="project-action">
+          <a href="https://github.com/chay2126/Global_Stock_Agent" target="_blank" class="project-link">
+            View on GitHub <span>↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-row reveal" data-delay="240">
+        <div class="project-num">04</div>
+        <div class="project-info">
+          <h3 class="project-title">AI Story Teller</h3>
+          <p class="project-desc">A dynamic AI storytelling engine that generates creative narratives from user prompts using natural language processing. Every story is unique, context-aware, and imagination-driven.</p>
+          <div class="project-stack">
+            <span>Python</span><span>NLP</span>
+          </div>
+        </div>
+        <div class="project-action">
+          <a href="https://github.com/chay2126/story_teller" target="_blank" class="project-link">
+            View on GitHub <span>↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-row reveal" data-delay="320">
+        <div class="project-num">05</div>
+        <div class="project-info">
+          <h3 class="project-title">Apartment Management App</h3>
+          <p class="project-desc">A full backend application for managing apartment residents, tracking maintenance payments, and handling expense records — structured data storage and retrieval using Python and SQLite.</p>
+          <div class="project-stack">
+            <span>Python</span><span>SQLite</span>
+          </div>
+        </div>
+        <div class="project-action">
+          <a href="https://github.com/chay2126/Apartment_Management" target="_blank" class="project-link">
+            View on GitHub <span>↗</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 5: EXPERIENCE
+       ═══════════════════════════════════════════════════════ -->
+  <section id="experience" class="section-wrap section-experience">
+    <div class="exp-header reveal">
+      <div class="s-label">Professional</div>
+      <h2 class="s-title">Experience</h2>
+    </div>
+    <div class="exp-layout">
+      <div class="exp-timeline">
+        <div class="exp-timeline-line"></div>
+        <div class="exp-item reveal">
+          <div class="exp-dot"></div>
+          <div class="exp-date">Aug 2022 — Aug 2023</div>
+          <div class="exp-card">
+            <div class="exp-company">Prowess Enterprise</div>
+            <div class="exp-role">Python Developer</div>
+            <div class="exp-location">Visakhapatnam, India</div>
+            <ul class="exp-bullets">
+              <li>Developed backend components using Python supporting application functionality and efficient data processing workflows.</li>
+              <li>Managed REST APIs and database operations for the <strong>TeslaConnects</strong> project — ensuring reliable data exchange and smooth backend functionality.</li>
+              <li>Conducted manual testing for a <strong>Porsche Design</strong> website — identified layout inconsistencies and worked with developers to improve usability.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="exp-education reveal">
+        <div class="s-label">Education</div>
+        <div class="edu-list">
+          <div class="edu-item">
+            <div class="edu-year">2018–2022</div>
+            <div class="edu-details">
+              <div class="edu-degree">B.Tech — Information Technology</div>
+              <div class="edu-inst">Anil Neerukonda Institute of Technology and Science</div>
+              <div class="edu-grade">CGPA 7.12</div>
+            </div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-year">2016–2018</div>
+            <div class="edu-details">
+              <div class="edu-degree">Intermediate — MPC</div>
+              <div class="edu-inst">Sri Chaitanya Junior College</div>
+              <div class="edu-grade">543 Marks</div>
+            </div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-year">2016</div>
+            <div class="edu-details">
+              <div class="edu-degree">SSC (10th Standard)</div>
+              <div class="edu-inst">The Presidential School</div>
+              <div class="edu-grade">CGPA 6.7</div>
+            </div>
+          </div>
+        </div>
+        <div class="s-label" style="margin-top:3rem">Certifications</div>
+        <div class="cert-list">
+          <div class="cert-item">
+            <span class="cert-name">Advanced Python Certification</span>
+            <span class="cert-issuer">DataPro</span>
+          </div>
+          <div class="cert-item">
+            <span class="cert-name">Data Science Certification</span>
+            <span class="cert-issuer">Besant Technologies</span>
+          </div>
+          <div class="cert-item">
+            <span class="cert-name">Operating Systems</span>
+            <span class="cert-issuer">NPTEL</span>
+          </div>
+          <div class="cert-item">
+            <span class="cert-name">UI/UX Creative Design Pro</span>
+            <span class="cert-issuer">MyCaptain</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 6: CONTACT
+       ═══════════════════════════════════════════════════════ -->
+  <section id="contact" class="section-contact section-wrap">
+    <div class="contact-bg-word">CONTACT</div>
+    <div class="contact-inner">
+      <div class="s-label reveal">Get In Touch</div>
+      <h2 class="contact-title reveal">
+        Let's Build<br>Something <span class="accent">Great.</span>
+      </h2>
+      <p class="contact-sub reveal">Whether it's a backend system, an AI project, or just a great conversation — I'm always open to new opportunities.</p>
+      <a href="mailto:chaitupentakota1999@gmail.com" class="contact-email reveal">
+        chaitupentakota1999@gmail.com
+      </a>
+      <div class="contact-btns reveal">
+        <a href="assets/Chaitanya_Pentakota_Resume.pdf" download class="btn btn-primary">
+          <span>↓</span> Download Resume
+        </a>
+        <a href="https://github.com/chay2126" target="_blank" class="btn btn-outline">GitHub</a>
+        <a href="https://linkedin.com/in/chaitanya-pentakota-189217192" target="_blank" class="btn btn-outline">LinkedIn</a>
+      </div>
+    </div>
+    <!-- 3D character waves goodbye here -->
+    <canvas id="three-canvas-contact"></canvas>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 7: FEEDBACK
+       ═══════════════════════════════════════════════════════ -->
+  <section id="feedback" class="section-wrap section-feedback">
+    <div class="feedback-inner">
+      <div class="s-label reveal">Share Your Thoughts</div>
+      <h2 class="s-title reveal">Feedback</h2>
+      <p class="feedback-sub reveal">Worked with me? Viewed my work? I'd love to hear what you think.</p>
+      <div class="feedback-form reveal">
+        <div class="feedback-stars" id="star-rating">
+          <span class="star" data-val="1">★</span>
+          <span class="star" data-val="2">★</span>
+          <span class="star" data-val="3">★</span>
+          <span class="star" data-val="4">★</span>
+          <span class="star" data-val="5">★</span>
+        </div>
+        <div class="feedback-fields">
+          <input type="text" class="feedback-input" id="feedback-name" placeholder="Your Name">
+          <textarea class="feedback-input feedback-textarea" id="feedback-msg" placeholder="Your message or feedback..." rows="4"></textarea>
+        </div>
+        <button class="btn btn-primary" id="feedback-submit">
+          Send Feedback <span>→</span>
+        </button>
+        <div class="feedback-success" id="feedback-success">
+          ✓ Thank you for your feedback!
+        </div>
+        <div class="feedback-list" id="feedback-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════ -->
+  <footer id="footer">
+    <div class="footer-left">
+      <span class="footer-logo">CP.DEV</span>
+      <span class="footer-copy">© 2025 Chaitanya Pentakota. All rights reserved.</span>
+    </div>
+    <div class="footer-right">
+      <span>Built with precision. Powered by passion.</span>
+    </div>
+  </footer>
+
+  <!-- ── JAVASCRIPT ─────────────────────────────────────── -->
+  <script src="js/loader.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/lenis-scroll.js"></script>
+  <script src="js/gsap-animations.js"></script>
+  <script src="js/floating-icons.js"></script>
+  <script src="js/three-character.js"></script>
+  <script src="js/feedback.js"></script>
+
+</body>
+</html>
