@@ -39,11 +39,14 @@
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
   gap: 1px;
   background: #1a1a1a;
   border: 1px solid #1a1a1a;
   margin-top: 3rem;
 }
+
+.skill-group:nth-child(7) { grid-column: 1 / -1; }
 
 .skill-group {
   background: #050505;
@@ -107,4 +110,9 @@
 }
 @media (max-width: 600px) {
   .skills-grid { grid-template-columns: 1fr; }
+}
+
+.skill-group {
+  opacity: 1 !important;
+  transform: none !important;
 }

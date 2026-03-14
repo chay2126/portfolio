@@ -22,6 +22,9 @@
   <link rel="stylesheet" href="css/experience.css">
   <link rel="stylesheet" href="css/contact.css">
   <link rel="stylesheet" href="css/feedback.css">
+  <link rel="stylesheet" href="css/polish.css">
+  <link rel="stylesheet" href="css/character-2d.css">
+  <link rel="stylesheet" href="css/mobile.css">
 
   <!-- GSAP (CDN) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -44,7 +47,7 @@
   <div id="noise"></div>
   <style>
     /* Ensure hero photo loads correctly */
-    #hero { background: #000 url('assets/photos/hero-bg.jpg') center top / cover no-repeat; }
+    #hero { background: #000 url('assets/photos/hero-bg.jpg') center 30% / cover no-repeat; }
   </style>
 
   <!-- ── CUSTOM CURSOR ─────────────────────────────────── -->
@@ -96,7 +99,7 @@
 
   <!-- ── NAVIGATION ─────────────────────────────────────── -->
   <nav id="nav">
-    <a href="#hero" class="nav-logo">CP<span>.</span>DEV</a>
+    <a href="#hero" class="nav-logo">CHAITANYA <span>PENTAKOTA</span></a>
     <ul class="nav-links">
       <li><a href="#story"      data-section="story">About</a></li>
       <li><a href="#skills"     data-section="skills">Skills</a></li>
@@ -185,6 +188,8 @@
         <div class="story-panel" data-color="#00F5FF">
           <div class="story-panel-photo" style="background-image: url('assets/photos/story-1.jpg')">
             <div class="story-panel-photo-overlay"></div>
+            <div class="photo-corner-tl"></div>
+            <div class="photo-corner-br"></div>
           </div>
           <div class="story-panel-content">
             <div class="s-label">01 — Who I Am</div>
@@ -202,6 +207,8 @@
           </div>
           <div class="story-panel-photo" style="background-image: url('assets/photos/story-2.jpg')">
             <div class="story-panel-photo-overlay"></div>
+            <div class="photo-corner-tl"></div>
+            <div class="photo-corner-br"></div>
           </div>
         </div>
 
@@ -209,6 +216,8 @@
         <div class="story-panel" data-color="#00F5FF">
           <div class="story-panel-photo" style="background-image: url('assets/photos/story-3.jpg')">
             <div class="story-panel-photo-overlay"></div>
+            <div class="photo-corner-tl"></div>
+            <div class="photo-corner-br"></div>
           </div>
           <div class="story-panel-content">
             <div class="s-label">03 — My Journey</div>
@@ -237,13 +246,42 @@
        SECTION 3: SKILLS
        ═══════════════════════════════════════════════════════ -->
   <section id="skills" class="section-wrap section-skills">
-    <div class="skills-header reveal">
+    <div class="skills-header">
       <div class="s-label">Core Technologies</div>
       <h2 class="s-title">What I<br><span class="accent">Work With</span></h2>
     </div>
-    <div id="skills-orbit-canvas"></div>
+    <div class="skills-character">
+      <span class="char-float">&lt;/&gt;</span>
+      <span class="char-float">{ }</span>
+      <span class="char-float">def</span>
+      <span class="char-float">AI</span>
+      <span class="char-float">#ML</span>
+      <!-- Head -->
+      <div class="char-head">
+        <div class="char-glasses"></div>
+        <div class="char-eye char-eye-l"></div>
+        <div class="char-eye char-eye-r"></div>
+        <div class="char-mouth"></div>
+      </div>
+      <!-- Arms -->
+      <div class="char-arm char-arm-l"></div>
+      <div class="char-arm char-arm-r"></div>
+      <!-- Body -->
+      <div class="char-body">
+        <div class="char-laptop">
+          <div class="char-laptop-screen"></div>
+        </div>
+      </div>
+      <!-- Legs -->
+      <div class="char-leg char-leg-l"></div>
+      <div class="char-leg char-leg-r"></div>
+      <!-- Feet -->
+      <div class="char-foot char-foot-l"></div>
+      <div class="char-foot char-foot-r"></div>
+    </div>
+
     <div class="skills-grid">
-      <div class="skill-group reveal" data-delay="0">
+      <div class="skill-group" data-delay="0" data-num="01">
         <div class="skill-group-label">Languages</div>
         <div class="skill-tags">
           <span class="skill-tag">Python</span>
@@ -252,7 +290,7 @@
           <span class="skill-tag">C</span>
         </div>
       </div>
-      <div class="skill-group reveal" data-delay="80">
+      <div class="skill-group" data-delay="80" data-num="02">
         <div class="skill-group-label">Backend &amp; APIs</div>
         <div class="skill-tags">
           <span class="skill-tag">FastAPI</span>
@@ -260,7 +298,7 @@
           <span class="skill-tag">REST APIs</span>
         </div>
       </div>
-      <div class="skill-group reveal" data-delay="160">
+      <div class="skill-group" data-delay="160" data-num="03">
         <div class="skill-group-label">AI &amp; NLP</div>
         <div class="skill-tags">
           <span class="skill-tag">LLM Integration</span>
@@ -270,7 +308,7 @@
           <span class="skill-tag">OpenCV</span>
         </div>
       </div>
-      <div class="skill-group reveal" data-delay="240">
+      <div class="skill-group" data-delay="240" data-num="04">
         <div class="skill-group-label">Databases</div>
         <div class="skill-tags">
           <span class="skill-tag">MySQL</span>
@@ -278,7 +316,7 @@
           <span class="skill-tag">SQLite</span>
         </div>
       </div>
-      <div class="skill-group reveal" data-delay="320">
+      <div class="skill-group" data-delay="320" data-num="05">
         <div class="skill-group-label">Data &amp; Viz</div>
         <div class="skill-tags">
           <span class="skill-tag">Power BI</span>
@@ -286,12 +324,19 @@
           <span class="skill-tag">Excel</span>
         </div>
       </div>
-      <div class="skill-group reveal" data-delay="400">
+      <div class="skill-group" data-delay="400" data-num="06">
         <div class="skill-group-label">Design &amp; Tools</div>
         <div class="skill-tags">
           <span class="skill-tag">Figma</span>
           <span class="skill-tag">UI/UX Design</span>
           <span class="skill-tag">Git</span>
+        </div>
+      </div>
+      <div class="skill-group" data-delay="480" data-num="07">
+        <div class="skill-group-label">Operating Systems</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Windows</span>
+          <span class="skill-tag">Linux</span>
         </div>
       </div>
     </div>
@@ -301,7 +346,7 @@
        SECTION 4: PROJECTS
        ═══════════════════════════════════════════════════════ -->
   <section id="projects" class="section-wrap section-projects">
-    <div class="projects-header reveal">
+    <div class="projects-header">
       <div class="s-label">Selected Work</div>
       <h2 class="s-title">Projects</h2>
     </div>
@@ -473,15 +518,15 @@
   <section id="contact" class="section-contact section-wrap">
     <div class="contact-bg-word">CONTACT</div>
     <div class="contact-inner">
-      <div class="s-label reveal">Get In Touch</div>
-      <h2 class="contact-title reveal">
+      <div class="s-label">Get In Touch</div>
+      <h2 class="contact-title">
         Let's Build<br>Something <span class="accent">Great.</span>
       </h2>
-      <p class="contact-sub reveal">Whether it's a backend system, an AI project, or just a great conversation — I'm always open to new opportunities.</p>
-      <a href="mailto:chaitupentakota1999@gmail.com" class="contact-email reveal">
-        chaitupentakota1999@gmail.com
+      <p class="contact-sub">Whether it's a backend system, an AI project, or just a great conversation — I'm always open to new opportunities.</p>
+      <a href="/cdn-cgi/l/email-protection#90f3f8f1f9e4e5e0f5fee4f1fbffe4f1a1a9a9a9d0f7fdf1f9fcbef3fffd" class="contact-email">
+        <span class="__cf_email__" data-cfemail="d4b7bcb5bda0a1a4b1baa0b5bfbba0b5e5ededed94b3b9b5bdb8fab7bbb9">[email&#160;protected]</span>
       </a>
-      <div class="contact-btns reveal">
+      <div class="contact-btns">
         <a href="assets/Chaitanya_Pentakota_Resume.pdf" download class="btn btn-primary">
           <span>↓</span> Download Resume
         </a>
@@ -498,9 +543,9 @@
        ═══════════════════════════════════════════════════════ -->
   <section id="feedback" class="section-wrap section-feedback">
     <div class="feedback-inner">
-      <div class="s-label reveal">Share Your Thoughts</div>
-      <h2 class="s-title reveal">Feedback</h2>
-      <p class="feedback-sub reveal">Worked with me? Viewed my work? I'd love to hear what you think.</p>
+      <div class="s-label">Share Your Thoughts</div>
+      <h2 class="s-title">Feedback</h2>
+      <p class="feedback-sub">Worked with me? Viewed my work? I'd love to hear what you think.</p>
       <div class="feedback-form reveal">
         <div class="feedback-stars" id="star-rating">
           <span class="star" data-val="1">★</span>
@@ -538,13 +583,12 @@
   </footer>
 
   <!-- ── JAVASCRIPT ─────────────────────────────────────── -->
-  <script src="js/loader.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/loader.js"></script>
   <script src="js/cursor.js"></script>
   <script src="js/main.js"></script>
   <script src="js/lenis-scroll.js"></script>
   <script src="js/gsap-animations.js"></script>
   <script src="js/floating-icons.js"></script>
-  <script src="js/three-character.js"></script>
   <script src="js/feedback.js"></script>
 
 </body>

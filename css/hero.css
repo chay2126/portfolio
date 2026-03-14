@@ -13,7 +13,7 @@
   overflow: hidden;
   background-image: url('../assets/photos/hero-bg.jpg');
   background-size: cover;
-  background-position: center top;
+  background-position: center bottom;
   background-repeat: no-repeat;
   background-color: #000;
 }
@@ -30,11 +30,11 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to top,    rgba(0,0,0,0.92) 0%,
-                               rgba(0,0,0,0.45) 35%,
+    linear-gradient(to top,    rgba(0,0,0,0.6) 0%,
+                               rgba(0,0,0,0.2) 35%,
                                rgba(0,0,0,0.1)  65%,
                                transparent      100%),
-    linear-gradient(to right,  rgba(0,0,0,0.75) 0%,
+    linear-gradient(to right,  rgba(0,0,0,0.5) 0%,
                                rgba(0,0,0,0.2)  50%,
                                transparent      100%);
 }
@@ -61,15 +61,9 @@
   pointer-events: none;
 }
 
-/* ─── 3D CHARACTER CANVAS ────────────────────────────────── */
+/* ─── 3D CHARACTER CANVAS — hidden ──────────────────────── */
 #three-canvas {
-  position: absolute;
-  right: 4rem;
-  bottom: 5rem;
-  width: 380px;
-  height: 420px;
-  z-index: 4;
-  pointer-events: none;
+  display: none;
 }
 
 /* ─── HERO CONTENT ───────────────────────────────────────── */

@@ -1,0 +1,215 @@
+/* ============================================================
+   POLISH.CSS — Section transitions, spacing, typography details
+   ============================================================ */
+
+/* ─── SMOOTH ACCENT COLOR TRANSITIONS ───────────────────── */
+:root {
+  --accent: #0066FF;
+}
+
+/* Nav contact button follows accent color */
+.nav-contact {
+  transition: background 0.6s ease, box-shadow 0.6s ease;
+}
+
+/* Cursor inner dot follows accent */
+.cursor-dot {
+  transition: background 0.4s ease;
+}
+
+/* ─── SECTION SPACING REFINEMENTS ────────────────────────── */
+#skills,
+#projects,
+#experience,
+#contact,
+#feedback {
+  scroll-margin-top: 0;
+}
+
+/* ─── BETWEEN-SECTION DIVIDERS ───────────────────────────── */
+#skills::after,
+#projects::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #1f1f1f 20%, #1f1f1f 80%, transparent);
+  margin-top: 0;
+}
+
+/* ─── SKILLS VISUAL POLISH ────────────────────────────────── */
+.skills-grid {
+  position: relative;
+}
+
+/* Animate the grid border on scroll */
+.skill-group-label {
+  position: relative;
+}
+
+/* Number counter inside skill group */
+.skill-group::after {
+  content: attr(data-num);
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  color: rgba(57, 255, 20, 0.15);
+  letter-spacing: 0.1em;
+}
+
+/* ─── PROJECT ROW POLISH ──────────────────────────────────── */
+/* Animated underline on project title hover */
+.project-title {
+  position: relative;
+  display: inline-block;
+}
+
+/* GitHub arrow grows on hover */
+.project-link .arrow {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+
+.project-row:hover .project-link .arrow {
+  transform: translate(4px, -4px);
+}
+
+/* ─── EXPERIENCE POLISH ───────────────────────────────────── */
+/* Glow pulse on the exp dot */
+.exp-dot {
+  animation: expDotPulse 3s ease-in-out infinite;
+}
+
+@keyframes expDotPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(168,85,247,0.5); }
+  50%       { box-shadow: 0 0 20px rgba(168,85,247,0.9), 0 0 40px rgba(168,85,247,0.3); }
+}
+
+/* ─── CONTACT SECTION POLISH ──────────────────────────────── */
+/* Glowing underline sweep on email */
+.contact-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-sub {
+  position: relative;
+}
+
+/* Background word shimmer */
+.contact-bg-word {
+  animation: shimmer 8s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* ─── NOISE OVERLAY ───────────────────────────────────────── */
+#noise {
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.018;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: overlay;
+}
+
+/* ─── FOOTER POLISH ───────────────────────────────────────── */
+#footer {
+  position: relative;
+  overflow: hidden;
+}
+
+#footer::before {
+  content: 'CP.DEV';
+  position: absolute;
+  right: -2rem;
+  bottom: -1.5rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 6rem;
+  color: rgba(255,255,255,0.02);
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ─── NAV ACTIVE STATE ────────────────────────────────────── */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--accent, #0066FF);
+  transform: scaleX(0);
+  transition: transform 0.3s ease, background 0.6s ease;
+}
+
+.nav-link.active::after,
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* ─── SMOOTH SECTION ENTRY EDGES ─────────────────────────── */
+/* Top fade-in masks for each major section */
+#skills::before,
+#projects::before,
+#experience::before,
+#contact::before,
+#feedback::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #222 30%, #222 70%, transparent);
+  margin-bottom: 0;
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  pointer-events: none;
+}
+
+/* ─── SCROLLBAR STYLE ─────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb {
+  background: #1f1f1f;
+  border-radius: 2px;
+  transition: background 0.3s;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent, #0066FF); }
+
+/* ─── TEXT SELECTION ──────────────────────────────────────── */
+::selection {
+  background: var(--accent, #0066FF);
+  color: #000;
+}
+
+/* ─── FOCUS VISIBLE ───────────────────────────────────────── */
+:focus-visible {
+  outline: 1px solid var(--accent, #0066FF);
+  outline-offset: 3px;
+}
+
+/* ─── FEEDBACK SECTION SPACING ───────────────────────────── */
+.feedback-stars {
+  margin-bottom: 1.5rem;
+}
+
+#feedback .s-title {
+  font-size: clamp(3rem, 7vw, 7rem);
+}
+
+/* ─── CONTACT SUB TEXT POLISH ─────────────────────────────── */
+.contact-sub {
+  max-width: 420px;
+}

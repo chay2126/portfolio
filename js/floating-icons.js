@@ -40,14 +40,14 @@ class FloatingIcons {
   }
 
   _spawn() {
-    const count = Math.floor(window.innerWidth / 80);
+    const count = Math.floor(window.innerWidth / 50);
     for (let i = 0; i < count; i++) {
       this.icons.push(this._makeIcon(true));
     }
   }
 
   _makeIcon(randomY = false) {
-    const size = 11 + Math.random() * 10;
+    const size = 22 + Math.random() * 26;
     const color = this.COLORS[Math.floor(Math.random() * this.COLORS.length)];
     return {
       text:    this.SYMBOLS[Math.floor(Math.random() * this.SYMBOLS.length)],
@@ -56,7 +56,7 @@ class FloatingIcons {
       vx:      (Math.random() - 0.5) * 0.35,
       vy:      -(0.25 + Math.random() * 0.4),
       size,
-      alpha:   0.08 + Math.random() * 0.18,
+      alpha:   0.45 + Math.random() * 0.45,
       color,
       rotation: Math.random() * Math.PI * 2,
       rotSpeed: (Math.random() - 0.5) * 0.008,

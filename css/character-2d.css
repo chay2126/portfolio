@@ -1,0 +1,208 @@
+/* ============================================================
+   CHARACTER-2D.CSS — Animated 2D Developer Character
+   ============================================================ */
+
+.skills-character {
+  position: absolute;
+  right: clamp(1rem, 5vw, 5rem);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 180px;
+  height: 220px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ─── BODY PARTS ─────────────────────────────────────────── */
+
+/* Head */
+.char-head {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 64px; height: 64px;
+  background: #1a1a2e;
+  border: 2px solid #39FF14;
+  border-radius: 12px;
+  animation: charHeadBob 3s ease-in-out infinite;
+}
+
+/* Eyes */
+.char-eye {
+  position: absolute;
+  top: 20px;
+  width: 10px; height: 10px;
+  background: #39FF14;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #39FF14;
+  animation: charBlink 4s ease-in-out infinite;
+}
+.char-eye-l { left: 12px; }
+.char-eye-r { right: 12px; }
+
+/* Glasses */
+.char-glasses {
+  position: absolute;
+  top: 17px; left: 8px;
+  width: 48px; height: 16px;
+  border: 1.5px solid rgba(57,255,20,0.4);
+  border-radius: 4px;
+}
+.char-glasses::after {
+  content: '';
+  position: absolute;
+  top: 2px; left: 50%;
+  transform: translateX(-50%);
+  width: 2px; height: 10px;
+  background: rgba(57,255,20,0.4);
+}
+
+/* Mouth */
+.char-mouth {
+  position: absolute;
+  bottom: 14px; left: 50%;
+  transform: translateX(-50%);
+  width: 22px; height: 6px;
+  border: 2px solid #39FF14;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  opacity: 0.7;
+}
+
+/* Body */
+.char-body {
+  position: absolute;
+  top: 74px; left: 50%;
+  transform: translateX(-50%);
+  width: 72px; height: 80px;
+  background: #0a1628;
+  border: 2px solid rgba(57,255,20,0.5);
+  border-radius: 6px;
+}
+
+/* Laptop on body */
+.char-laptop {
+  position: absolute;
+  top: 14px; left: 8px;
+  width: 54px; height: 34px;
+  background: #050505;
+  border: 1.5px solid #39FF14;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.char-laptop-screen {
+  position: absolute;
+  inset: 3px;
+  background: #000;
+  overflow: hidden;
+}
+/* Typing lines on screen */
+.char-laptop-screen::before {
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 60%;
+  height: 2px;
+  background: #39FF14;
+  box-shadow: 0 5px 0 #39FF14, 0 10px 0 rgba(57,255,20,0.4), 0 15px 0 rgba(57,255,20,0.2);
+  animation: charTyping 1.2s steps(1) infinite;
+}
+
+/* Arms */
+.char-arm {
+  position: absolute;
+  top: 78px;
+  width: 16px; height: 58px;
+  background: #0a1628;
+  border: 2px solid rgba(57,255,20,0.4);
+  border-radius: 6px;
+}
+.char-arm-l {
+  left: calc(50% - 48px);
+  transform-origin: top center;
+  animation: charArmL 2s ease-in-out infinite;
+}
+.char-arm-r {
+  right: calc(50% - 48px);
+  transform-origin: top center;
+  animation: charArmR 2s ease-in-out infinite;
+}
+
+/* Legs */
+.char-leg {
+  position: absolute;
+  top: 158px;
+  width: 18px; height: 50px;
+  background: #0a1628;
+  border: 2px solid rgba(57,255,20,0.3);
+  border-radius: 4px;
+}
+.char-leg-l { left: calc(50% - 26px); }
+.char-leg-r { right: calc(50% - 26px); }
+
+/* Feet */
+.char-foot {
+  position: absolute;
+  top: 200px;
+  width: 24px; height: 12px;
+  background: #39FF14;
+  border-radius: 3px;
+}
+.char-foot-l { left: calc(50% - 30px); }
+.char-foot-r { right: calc(50% - 30px); }
+
+/* Floating code symbols around character */
+.char-float {
+  position: absolute;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: #39FF14;
+  opacity: 0;
+  animation: charFloat 3s ease-in-out infinite;
+}
+.char-float:nth-child(1)  { top: 10px;  left: -30px; animation-delay: 0s; }
+.char-float:nth-child(2)  { top: 40px;  right: -30px; animation-delay: 0.8s; }
+.char-float:nth-child(3)  { top: 80px;  left: -40px; animation-delay: 1.6s; }
+.char-float:nth-child(4)  { top: 120px; right: -35px; animation-delay: 0.4s; }
+.char-float:nth-child(5)  { top: 160px; left: -25px; animation-delay: 1.2s; }
+
+/* ─── KEYFRAMES ──────────────────────────────────────────── */
+@keyframes charHeadBob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(-6px); }
+}
+
+@keyframes charBlink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95%            { transform: scaleY(0.1); }
+}
+
+@keyframes charTyping {
+  0%   { width: 20%; }
+  25%  { width: 60%; }
+  50%  { width: 40%; }
+  75%  { width: 70%; }
+  100% { width: 30%; }
+}
+
+@keyframes charArmL {
+  0%, 100% { transform: rotate(-5deg); }
+  50%       { transform: rotate(5deg); }
+}
+
+@keyframes charArmR {
+  0%, 100% { transform: rotate(5deg); }
+  50%       { transform: rotate(-5deg); }
+}
+
+@keyframes charFloat {
+  0%   { opacity: 0; transform: translateY(0); }
+  20%  { opacity: 0.7; }
+  80%  { opacity: 0.7; }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
+/* ─── MOBILE — hide character on small screens ───────────── */
+@media (max-width: 900px) {
+  .skills-character { display: none; }
+}

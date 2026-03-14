@@ -74,3 +74,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+/* ─── NAV ACTIVE STATE ───────────────────────────────────── */
+const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('section[id]');
+
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+      });
+    }
+  });
+}, { threshold: 0.35 });
+
+sections.forEach(s => navObserver.observe(s));
