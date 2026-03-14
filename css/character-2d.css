@@ -4,9 +4,9 @@
 
 .skills-character {
   position: absolute;
-  right: clamp(1rem, 5vw, 5rem);
-  top: 50%;
-  transform: translateY(-50%);
+  right: clamp(2rem, 5vw, 5rem);
+  bottom: -130px;
+  transform: none;
   width: 180px;
   height: 220px;
   pointer-events: none;

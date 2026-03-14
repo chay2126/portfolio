@@ -23,6 +23,7 @@
 
 .skills-header {
   margin-bottom: 4rem;
+  position: relative;
 }
 
 .skills-header .s-title {
