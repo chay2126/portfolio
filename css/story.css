@@ -7,7 +7,7 @@
   position: relative;
   background: #050505;
   /* Height = panels × 100vh so GSAP has room to scroll */
-  height: 800vh;
+  height: 700vh;
 }
 
 /* ─── STICKY CONTAINER ───────────────────────────────────── */
